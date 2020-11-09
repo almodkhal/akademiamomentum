@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +16,8 @@ use App\Http\Controllers\PagesController;
 */
 Route::get('/', 'App\Http\Controllers\PagesController@index');
 Route::get('/services', 'App\Http\Controllers\PagesController@services');
+
+Route::resource('posts', 'App\Http\Controllers\PostsController');
 
 Route::get('/users/{id}/{name}', function($id, $name){
     return 'This is the user '.$id;
