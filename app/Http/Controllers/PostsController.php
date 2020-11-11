@@ -4,10 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Storage;
 
 
 class PostsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -41,13 +52,28 @@ class PostsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'short_description' => 'required',
+            'image' => 'image|max:1990'
         ]);
+        // File Upload
+        if ($request->hasFile('image')){
+            // Get Filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            // Get just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // Store Filename | Not overwrite image with same name
+            $filenameStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('image')->storeAs('public/images', $filenameStore);
+        }
         // Create Post
         $post = new Post;
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->short_description = $request->input('short_description');
         $post->user_id = auth()->user()->id;
+        $post->image =$filenameStore;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -73,7 +99,12 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+
         $post = Post::find($id);
+        // check for correct user id
+        if(auth()->user()->id !== $post->user_id){
+            return redirect ('/posts')->with('error', 'Unauthorized Page');
+        }
         return view('posts.edit')->with('post', $post);
     }
 
@@ -91,13 +122,29 @@ class PostsController extends Controller
             'description' => 'required',
             'short_description' => 'required',
         ]);
+        // File Upload
+        if ($request->hasFile('image')){
+            // Get Filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            // Get just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Ext
+            $extension = $request->file('image')->getClientOriginalExtension();
+            // Store Filename | Not overwrite image with same name
+            $filenameStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('image')->storeAs('public/images', $filenameStore);
+        }
         // Create Post
         $post = Post::find($id);
         $post->title = $request->input('title');
         $post->description = $request->input('description');
         $post->short_description = $request->input('short_description');
+        if ($request->hasFile('image')){
+            Storage::delete('public/images/'.$post->image);
+            $post->image = $filenameStore;
+        }
         $post->save();
-
         return redirect('/posts')->with('success', 'Post Updated');
     }
 
@@ -110,8 +157,12 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+        if(auth()->user()->id !== $post->user_id){
+            return redirect ('/posts')->with('error', 'Unauthorized Page');
+        }
+        // Delete Image
+        Storage::delete('public/images/'.$post->image);
         $post->delete();
-
         return redirect('/posts')->with('success', 'Post Deleted');
     }
 }

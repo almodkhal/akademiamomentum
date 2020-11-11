@@ -8,7 +8,7 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $title = 'Welcome';
+        $title = 'Rrasi Indexin e Templates qe do perdoresh ';
         return view('pages.index')->with('title', $title);
     }
     public function about()
