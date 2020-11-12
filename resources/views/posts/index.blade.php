@@ -2,30 +2,50 @@
 
 @section('content')
 <div class="container">
-    <h1 class="display-4">Posts</h1>
-    @if (count($posts) > 0)
-        {{-- Loop Post --}}
-        @foreach ($posts as $post)
-            <div class="card-mb-3" style="max-width:700px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4 col-sm-4">
-                        <img style="width:100%;" class="card-img" src="/storage/images/{{ $post->image }}" alt="">
-                    </div>
-                    <div class="col-md-8 col-sm-8">
-                        <div class="card-body">
-                            <h3 class="card-title"><a href="/posts/{{$post->id}}">{{ $post->title }}</a></h3>
-                            <p class="card-text">{!! $post->description !!}</p>
-                            <p class="card-text"><small>On {{$post->created_at}} </small></p>
-                        </div>
-                    </div>
-                </div>
+    <h1 class="display-4">All Posts</h1>
+    <div class="card-body">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
             </div>
-        @endforeach
-        {{-- End Loop --}}
-        {{-- Paginate Link --}}
-        {{$posts->links()}}
-    @else
-        <h1>No posts</h1>
-    @endif
+        @endif
+        <a href="/posts/create" class="btn btn-success float-right" style="margin-top: -10px;">Create Post</a>
+        <h3>Posts</h3>
+        @if (count($posts) > 0)
+
+
+        <table class="table table-striped">
+            <tr>
+                <th scope="col">Nr</th>
+                <th scope="col">Image</th>
+                <th scope="col">Title</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+
+            @foreach ($posts as $post)
+                <tr>
+
+                    {{-- @for ($i = 1; $i > $post->count(); $i++)
+
+
+                    @endfor --}}
+                    <td scope="row">{{ ($posts->total()-$loop->index)-(($posts->currentpage()-1) * $posts->perpage() ) }}</td>
+                    <td scope="row"><img style="float: left; width: 100px; height: 100px; object-fit: cover;" class="card-img" src="/storage/images/{{ $post->image }}" alt=""></td>
+                    <td >{{ $post->title }}</td>
+                    <td><a class="btn btn-primary" href="/posts/{{ $post->id }}/edit">Edit</a></td>
+                    <td>{!! Form::open(['action' => ['App\Http\Controllers\PostsController@destroy', $post->id], 'method' => 'POST']) !!}
+                        {{ Form::hidden('_method', 'DELETE') }}
+                        {{ Form::submit('Delete', ['class' => 'btn btn-danger']) }}
+                    {!! Form::close() !!}</td>
+                </tr>
+            @endforeach
+
+        </table>
+        {{ $posts->links('pagination::bootstrap-4') }}
+        @else
+            <p>You Have No Posts!</p>
+        @endif
+    </div>
 </div>
 @endsection

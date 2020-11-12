@@ -40,16 +40,11 @@
         @else
         {{-- Admin Panel --}}
         <div id="wrapper">
-
             @include('partials.admin.sidebar')
-
             <div id="content-wrapper" class="d-flex flex-column">
-
                 <!-- Main Content -->
                 <div id="content">
                     @include('partials.admin.nav')
-
-
                     <main class="py-4">
                         <div class="container">
                             @include('partials.messages')
