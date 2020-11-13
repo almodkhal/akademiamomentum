@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Course extends Model
 {
     // Table Name
-    protected $table = 'posts';
+    protected $table = 'courses';
     // Primary Key
     public $primaryKey = 'id';
 
@@ -17,9 +17,9 @@ class Post extends Model
         return $this->belongsTo('App\Models\User');
     }
 
-    public function courses()
+    public function posts()
     {
-        return $this->hasMany('App\Models\Course');
+        return $this->belongsTo('App\Models\Post');
     }
 
 }

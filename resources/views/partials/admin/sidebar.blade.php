@@ -75,7 +75,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                 aria-expanded="true" aria-controls="collapsePages">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-university "></i>
                 <span>Departments</span>
             </a>
             <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -90,7 +90,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
                 aria-expanded="true" aria-controls="collapseStaff">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-chalkboard-teacher"></i>
                 <span>Staff</span>
             </a>
             <div id="collapseStaff" class="collapse" aria-labelledby="headingStaff" data-parent="#accordionSidebar">
@@ -105,36 +105,19 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCourses"
                 aria-expanded="true" aria-controls="collapseCourses">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-fw fa-laptop-code"></i>
                 <span>Courses</span>
             </a>
             <div id="collapseCourses" class="collapse" aria-labelledby="headingCourses" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Courses:</h6>
-                    <a class="collapse-item" href="/staff">All Courses</a>
-                    <a class="collapse-item" href="/staff/create">Create a Course</a>
+                    <a class="collapse-item" href="/courses">All Courses</a>
+                    <a class="collapse-item" href="/courses/create">Create a Course</a>
                     <div class="collapse-divider"></div>
                 </div>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStaff"
-                aria-expanded="true" aria-controls="collapseStaff">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Staff</span>
-            </a>
-            <div id="collapseStaff" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">All Staff:</h6>
-                    <a class="collapse-item" href="/staff">Staff</a>
-                    <a class="collapse-item" href="/staff/create">Create Staff</a>
-                    <div class="collapse-divider"></div>
-                    {{-- <h6 class="collapse-header">Other Pages:</h6>
-                    <a class="collapse-item" href="404.html">404 Page</a>
-                    <a class="collapse-item" href="blank.html">Blank Page</a> --}}
-                </div>
-            </div>
-        </li>
+
 
         <!-- Nav Item - Charts -->
         {{-- <li class="nav-item">
@@ -160,7 +143,9 @@
 
         <!-- Sidebar Message -->
         <div class="sidebar-card">
-            <img class="sidebar-card-illustration mb-2" src="storage/images/momentum.png" alt="">
+            <a href="https://momentumo.com" target="_blank">
+                <img class="sidebar-card-illustration mb-2" src="{{ asset('storage/images/momentum.png') }}" alt="">
+            </a>
             <p class="text-center mb-2"><strong>POWERED BY</strong></p>
             <a class="btn btn-success btn-sm" href="https://momentumo.com" target="_blank">MOMENTUM MARKETING</a>
         </div>

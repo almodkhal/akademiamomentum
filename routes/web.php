@@ -19,6 +19,7 @@ Route::get('/services', 'App\Http\Controllers\PagesController@services');
 
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 Route::resource('staff', 'App\Http\Controllers\StaffController');
+Route::resource('courses', 'App\Http\Controllers\CoursesController');
 
 Route::get('/users/{id}/{name}', function($id, $name){
     return 'This is the user '.$id;
