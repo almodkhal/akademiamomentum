@@ -14,6 +14,20 @@
             {{ Form::textarea('bio', '', ['id' => 'article-ckeditor', 'class' => 'form-control', 'placeholder' => 'Bio']) }}
         </div>
         <div class="form-group">
+            <label for="post">Departamenti</label>
+            <select name="post" class="form-control" id="post">
+                @foreach($posts as $post)
+                    <option value="{{$post->id}}"
+                        @if (isset($post))
+                            @if ($post->id === $post->post_id)
+                                selected
+                            @endif
+                        @endif
+                        >{{$post->title}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
             {{ Form::file('image') }}
         </div>
         {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}

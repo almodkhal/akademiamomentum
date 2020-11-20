@@ -26,6 +26,35 @@
             {{ Form::text('time', '', ['class' => 'form-control', 'placeholder' => 'Time of Course']) }}
         </div>
         <div class="form-group">
+            <label for="post">Departamenti</label>
+            <select name="post" class="form-control" id="post">
+                @foreach($posts as $post)
+                    <option value="{{$post->id}}"
+                        @if (isset($post))
+                            @if ($post->id === $post->post_id)
+                                selected
+                            @endif
+                        @endif
+                        >{{$post->title}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="staf">Instructor</label>
+            <select name="staf" class="form-control" id="staf">
+                @foreach($staff as $staf)
+                    <option value="{{$staf->id}}"
+                        @if (isset($staf))
+                            @if ($staf->id === $staf->staf_id)
+                                selected
+                            @endif
+                        @endif
+                        >{{$staf->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             {{ Form::file('image') }}
         </div>
         {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}

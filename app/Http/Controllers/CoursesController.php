@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\Post;
+use App\Models\Staf;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -27,7 +29,7 @@ class CoursesController extends Controller
     public function index()
     {
         $courses = Course::orderby('created_at', 'desc')->paginate(3);
-        return view('courses.index')->with('courses', $courses);
+        return view('courses.index')->with('courses', $courses)->with('posts', Post::all());
     }
 
     /**
@@ -37,7 +39,7 @@ class CoursesController extends Controller
      */
     public function create()
     {
-        return view('courses.create');
+        return view('courses.create')->with('posts', Post::all())->with('staff', Staf::all());
     }
 
     /**
@@ -77,6 +79,7 @@ class CoursesController extends Controller
         $course->length = $request->input('length');
         $course->time = $request->input('time');
         $course->user_id = auth()->user()->id;
+        $course->post_id = $request->post;
         $course->image =$filenameStore;
         $course->save();
 
@@ -149,6 +152,7 @@ class CoursesController extends Controller
         $course->short_description = $request->input('short_description');
         $course->length = $request->input('length');
         $course->time = $request->input('time');
+        $course->post_id = $request->post;
         if ($request->hasFile('image')){
             Storage::delete('public/images/'.$course->image);
             $course->image = $filenameStore;

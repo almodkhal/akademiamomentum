@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCourseIdToPosts extends Migration
+class AddPostIdToCourses extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddCourseIdToPosts extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('course_id');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->integer('post_id');
+            $table->integer('staf_id');
         });
     }
 
@@ -25,8 +26,9 @@ class AddCourseIdToPosts extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('course_id');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('post_id');
+            $table->dropColumn('staf_id');
         });
     }
 }

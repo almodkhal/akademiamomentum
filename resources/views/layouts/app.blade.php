@@ -28,14 +28,16 @@
 <body>
     <div id="app">
         @guest
-        @include('partials.nav')
+        @include('partials.index.head')
+        @include('partials.index.nav')
         <main class="py-4">
-            <div class="container">
+            <div class="lgx-container ">
                 @include('partials.messages')
                 @yield('content')
             </div>
 
         </main>
+        @include('partials.index.scripts')
 
         @else
         {{-- Admin Panel --}}
@@ -46,7 +48,7 @@
                 <div id="content">
                     @include('partials.admin.nav')
                     <main class="py-4">
-                        <div class="container">
+                        <div class="lgx-container ">
                             @include('partials.messages')
                             @yield('content')
                         </div>

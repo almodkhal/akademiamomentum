@@ -25,11 +25,6 @@
 
             @foreach ($posts as $post)
                 <tr>
-
-                    {{-- @for ($i = 1; $i > $post->count(); $i++)
-
-
-                    @endfor --}}
                     <td scope="row">{{ ($posts->total()-$loop->index)-(($posts->currentpage()-1) * $posts->perpage() ) }}</td>
                     <td scope="row"><img style="float: left; width: 100px; height: 100px; object-fit: cover;" class="card-img" src="/storage/images/{{ $post->image }}" alt=""></td>
                     <td >{{ $post->title }}</td>

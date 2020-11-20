@@ -16,4 +16,10 @@ class Staf extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function post()
+    {
+        return $this->belongsTo('App\Models\Post');
+    }
+
 }

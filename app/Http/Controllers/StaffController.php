@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Staf;
+use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
 class StaffController extends Controller
@@ -27,7 +28,7 @@ class StaffController extends Controller
     public function index()
     {
         $staff = Staf::orderby('created_at', 'desc')->paginate(3);
-        return view('staff.index')->with('staff', $staff);
+        return view('staff.index')->with('staff', $staff)->with('posts', Post::all());
     }
 
     /**
@@ -37,7 +38,7 @@ class StaffController extends Controller
      */
     public function create()
     {
-        return view('staff.create');
+        return view('staff.create')->with('posts', Post::all());
     }
 
     /**
@@ -71,12 +72,13 @@ class StaffController extends Controller
         $staf->name = $request->input('name');
         $staf->bio = $request->input('bio');
         $staf->user_id = auth()->user()->id;
+        $staf->post_id = $request->post;
         $staf->image =$filenameStore;
         $staf->save();
 
         return redirect('/staff')->with('success', 'Professor Created');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -86,7 +88,9 @@ class StaffController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::find($id);
+        $posts = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
@@ -98,11 +102,12 @@ class StaffController extends Controller
     public function edit($id)
     {
         $staf = Staf::find($id);
+        $post = Post::all();
         // check for correct user id
         if(auth()->user()->id !== $staf->user_id){
             return redirect ('/staff')->with('error', 'Unauthorized Page');
         }
-        return view('staff.edit')->with('staf', $staf);
+        return view('staff.edit')->with('staf', $staf)->with('post', $post);
     }
 
     /**
@@ -136,7 +141,8 @@ class StaffController extends Controller
         $staf = new Staf;
         $staf->name = $request->input('name');
         $staf->bio = $request->input('bio');
-       
+
+
         if ($request->hasFile('image')){
             Storage::delete('public/images/'.$staf->image);
             $staf->image = $filenameStore;
@@ -162,4 +168,6 @@ class StaffController extends Controller
         $staf->delete();
         return redirect('/staff')->with('success', 'Professor Deleted');
     }
+
+
 }

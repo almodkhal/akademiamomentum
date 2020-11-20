@@ -19,20 +19,18 @@
                 <th scope="col">Nr</th>
                 <th scope="col">Image</th>
                 <th scope="col">Title</th>
+                <th scope="col">Departamenti</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
 
             @foreach ($courses as $course)
                 <tr>
-
-                    {{-- @for ($i = 1; $i > $post->count(); $i++)
-
-
-                    @endfor --}}
                     <td scope="row">{{ ($courses->total()-$loop->index)-(($courses->currentpage()-1) * $courses->perpage() ) }}</td>
                     <td scope="row"><img style="float: left; width: 100px; height: 100px; object-fit: cover;" class="card-img" src="/storage/images/{{ $course->image }}" alt=""></td>
                     <td >{{ $course->title }}</td>
+                    <td ><a href="{{ route('posts.index', $course->post_id) }}">{{ $course->post->title }}</a></td>
+                    <td ><a href="{{ route('staff.index', $staf->course_id) }}">{{ $staf->course->title }}</a></td>
                     <td><a class="btn btn-primary" href="/courses/{{ $course->id }}/edit">Edit</a></td>
                     <td>{!! Form::open(['action' => ['App\Http\Controllers\CoursesController@destroy', $course->id], 'method' => 'POST']) !!}
                         {{ Form::hidden('_method', 'DELETE') }}
