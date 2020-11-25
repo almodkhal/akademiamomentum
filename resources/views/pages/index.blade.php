@@ -1,4 +1,6 @@
+
 @extends('layouts.app')
+
 <title>Akademia Momentum - Familja e Edukimit Europian</title>
 
 @section('content')
@@ -60,9 +62,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12">
-                        <img src="assets/img/about-team.png" alt="about">
-                    </div>
+
                 </div>
                 <!--//.ROW-->
             </div>
@@ -81,54 +81,16 @@
         <div class="lgx-inner">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">Free Tutorials</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
+                    @foreach ($posts as $post)
+                        <div class="col-sm-6 col-md-4">
+                            <div class="lgx-single-service"> <!--lgx-single-service-white-->
+                                <span class="icon"><img src="{{ asset('storage/images/'.$post->png) }}" alt="dep_icon"/></span>
+                                <h2 class="title"><a href="{{ route('pages.department', $post->id) }}">{{ $post->title }}</a></h2>
+                                <p>{{ $post->short_description }}</p>
+                                <a class="lgx-btn-simple" href="{{ route('pages.department', $post->id) }}">Më Shumë</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-address-book" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">500+ Courses</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-book" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">180k Books Available</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">Certified teachers</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-certificate" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">Certification</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4">
-                        <div class="lgx-single-service"> <!--lgx-single-service-white-->
-                            <span class="icon"><i class="fa fa-language" aria-hidden="true"></i></span>
-                            <h2 class="title"><a href="#">Language Lessons</a></h2>
-                            <p>Etiam vel ante ac lacus vestibulum rutrum. Aliquam vehicula, massa in auctor dapibus commodo quis vehicula lacus metus sed justo. </p>
-                            <a class="lgx-btn-simple" href="#">Read More</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div><!-- //.CONTAINER -->
         </div><!-- //.INNER -->
@@ -172,7 +134,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course1.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course1.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -185,7 +147,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/news/author1.jpg" alt="course">
+                                                <img src="{{ asset('img/news/author1.jpg') }}" alt="course">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Jonathon Doe</a></h4>
                                                     <h5 class="subtitle">Lecturar of Eduplus</h5>
@@ -209,7 +171,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course2.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course2.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -222,7 +184,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/news/author2.jpg" alt="course">
+                                                <img src="{{ asset('img/news/author2.jpg') }}" alt="course">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Riaz Sagar</a></h4>
                                                     <h5 class="subtitle">Lecturar of Education plus</h5>
@@ -246,7 +208,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course3.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course3.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -259,7 +221,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/news/author5.jpg" alt="course">
+                                                <img src="{{ asset('img/news/author5.jpg') }}" alt="course">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Vaskar Roy</a></h4>
                                                     <h5 class="subtitle">Lecturar of Edumaster</h5>
@@ -283,7 +245,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course4.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course4.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -296,7 +258,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/news/author3.jpg" alt="course">
+                                                <img src="{{ asset('img/news/author3.jpg') }}" alt="course">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Jonathon Talukdar</a></h4>
                                                     <h5 class="subtitle">Lecturar of Edumaster</h5>
@@ -320,7 +282,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course5.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course5.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -333,7 +295,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/news/author4.jpg" alt="course">
+                                                <img src="{{ asset('img/news/author4.jpg') }}" alt="course">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Jonathon Doe</a></h4>
                                                     <h5 class="subtitle">Lecturar of Edumaster</h5>
@@ -357,7 +319,7 @@
                                 <div class="lgx-single-course">
                                     <div class="lgx-single-course-inner">
                                         <figure>
-                                            <img src="assets/img/courses/course6.jpg" alt="course">
+                                            <img src="{{ asset('img/courses/course6.jpg') }}" alt="course">
                                             <figcaption>
                                                 <div class="lgx-hover-link">
                                                     <div class="lgx-vertical">
@@ -370,7 +332,7 @@
                                         </figure>
                                         <div class="course-info">
                                             <div class="course-author">
-                                                <img src="assets/img/courses/courses-author1.jpg" alt="courses author">
+                                                <img src="{{ asset('img/courses/courses-author1.jpg') }}" alt="courses author">
                                                 <div class="author-info">
                                                     <h4 class="title"><a href="#">Jonathon Doe</a></h4>
                                                     <h5 class="subtitle">Lecturar of Edumaster</h5>
@@ -473,14 +435,16 @@
                 <!--//.ROW-->
                 <div class="row">
                     <div id="lgx-owlteachers" class="owl-carousel lgx-owlteachers">
+                        @foreach ($staff as $staf)
+
 
                         <div class="item">
                             <div class="lgx-single-teacher"> <!--lgx-teacher-circle-->
                                 <figure>
-                                    <a href="teacher-single.html"><img src="assets/img/teachers/teacher1.jpg" alt="teacher"/></a>
+                                    <a href="teacher-single.html"><img src="{{ asset('storage/images/'.$staf->image) }}" alt="teacher"/></a>
                                     <figcaption>
-                                        <h3 class="teacher-name"><a href="teacher-single.html">Enathon Jackson</a><span>Lecturer</span></h3>
-                                        <p class="text">Integer sollicitudin molestie ante etme natoque penatibus et magnie nasceur nulla eleifend ollicitudin molestie</p>
+                                        <h3 class="teacher-name"><a href="teacher-single.html">{{ $staf->name }}</a><span>{{ $staf->post->title }}</span></h3>
+                                        <p class="text">Bio (short description add later)</p>
                                         <div class="teacher-bottom">
                                             <ul class="list-inline social-group">
                                                 <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
@@ -493,11 +457,12 @@
                                     </figcaption>
                                 </figure>
                             </div>
-                        </div> <!--//.Item-->
-                        <div class="item">
+                        </div>
+                        @endforeach
+                        {{-- <div class="item">
                             <div class="lgx-single-teacher"> <!--lgx-teacher-circle-->
                                 <figure>
-                                    <a href="teacher-single.html"><img src="assets/img/teachers/teacher2.jpg" alt="teacher"/></a>
+                                    <a href="teacher-single.html"><img src="{{ asset('img/teachers/teacher2.jpg') }}" alt="teacher"/></a>
                                     <figcaption>
                                         <h3 class="teacher-name"><a href="teacher-single.html">Enathon Jackson</a><span>Lecturer</span></h3>
                                         <p class="text">Integer sollicitudin molestie ante etme natoque penatibus et magnie nasceur nulla eleifend ollicitudin molestie</p>
@@ -513,11 +478,11 @@
                                     </figcaption>
                                 </figure>
                             </div>
-                        </div> <!--//.Item-->
+                        </div>
                         <div class="item">
                             <div class="lgx-single-teacher">
                                 <figure>
-                                    <a href="teacher-single.html"><img src="assets/img/teachers/teacher3.jpg" alt="teacher"/></a>
+                                    <a href="teacher-single.html"><img src="{{ asset('img/teachers/teacher3.jpg') }}" alt="teacher"/></a>
                                     <figcaption>
                                         <h3 class="teacher-name"><a href="teacher-single.html">Enathon Jackson</a><span>Lecturer</span></h3>
                                         <p class="text">Integer sollicitudin molestie ante etme natoque penatibus et magnie nasceur nulla eleifend ollicitudin molestie</p>
@@ -533,11 +498,11 @@
                                     </figcaption>
                                 </figure>
                             </div>
-                        </div> <!--//.Item-->
+                        </div>
                         <div class="item">
                             <div class="lgx-single-teacher">
                                 <figure>
-                                    <a href="teacher-single.html"><img src="assets/img/teachers/teacher2.jpg" alt="teacher"/></a>
+                                    <a href="teacher-single.html"><img src="{{ asset('img/teachers/teacher2.jpg') }}" alt="teacher"/></a>
                                     <figcaption>
                                         <h3 class="teacher-name"><a href="teacher-single.html">Enathon Jackson</a><span>Lecturer</span></h3>
                                         <p class="text">Integer sollicitudin molestie ante etme natoque penatibus et magnie nasceur nulla eleifend ollicitudin molestie</p>
@@ -553,7 +518,7 @@
                                     </figcaption>
                                 </figure>
                             </div>
-                        </div> <!--//.Item-->
+                        </div> <!--//.Item--> --}}
                     </div><!--l//#lgx-OWL NEWS-->
                 </div>
             </div>
@@ -1084,3 +1049,5 @@
 
 
 @endsection
+
+

@@ -12,58 +12,42 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    @guest
 
-    @else
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css">
-    @endguest
-    {{-- <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet" type="text/css"> --}}
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        @guest
-
-        @include('partials.index.head')
-        @include('partials.index.nav')
-        <main class="py-4">
-            <div class="lgx-container ">
-                @include('partials.messages')
-                @yield('content')
-            </div>
-        @include('partials.index.scripts')
-        </main>
-
-        @else
-        {{-- Admin Panel --}}
         <div id="wrapper">
-            @include('partials.admin.head')
+            @if(Auth::user())
             @include('partials.admin.sidebar')
+            @else
+            @endif
             <div id="content-wrapper" class="d-flex flex-column">
                 <!-- Main Content -->
                 <div id="content">
+
                     @include('partials.admin.nav')
                     <main class="py-4">
                         <div class="lgx-container ">
                             @include('partials.messages')
                             @yield('content')
                         </div>
-
                     </main>
                 </div>
             </div>
-        </div>
-        @endguest
-    </div>
 
+        </div>
+    </div>
     <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace('article-ckeditor');

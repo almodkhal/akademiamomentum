@@ -16,10 +16,11 @@ use App\Http\Controllers\PagesController;
 */
 Route::get('/', 'App\Http\Controllers\PagesController@index');
 Route::get('/services', 'App\Http\Controllers\PagesController@services');
+Route::get('/department/{post}', 'App\Http\Controllers\PagesController@department')->name('pages.department');
 
-Route::resource('posts', 'App\Http\Controllers\PostsController');
-Route::resource('staff', 'App\Http\Controllers\StaffController');
-Route::resource('courses', 'App\Http\Controllers\CoursesController');
+Route::resource('posts', 'App\Http\Controllers\PostsController')->middleware('auth');
+Route::resource('staff', 'App\Http\Controllers\StaffController')->middleware('auth');
+Route::resource('courses', 'App\Http\Controllers\CoursesController')->middleware('auth');
 
 Route::get('/users/{id}/{name}', function($id, $name){
     return 'This is the user '.$id;
@@ -32,6 +33,7 @@ Route::get('/users/{id}/{name}', function($id, $name){
 Auth::routes();
 
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+
 
 // Auth::routes();
 

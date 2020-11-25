@@ -52,7 +52,8 @@ class PostsController extends Controller
             'title' => 'required',
             'description' => 'required',
             'short_description' => 'required',
-            'image' => 'image|max:1990'
+            'image' => 'image|max:1990',
+            'png' => 'image|max:1990'
         ]);
         // File Upload
         if ($request->hasFile('image')){
@@ -67,6 +68,18 @@ class PostsController extends Controller
             // Upload Image
             $path = $request->file('image')->storeAs('public/images', $filenameStore);
         }
+        if ($request->hasFile('png')){
+            // Get Filename with extension
+            $filenameWithExt = $request->file('png')->getClientOriginalName();
+            // Get just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Ext
+            $extension = $request->file('png')->getClientOriginalExtension();
+            // Store Filename | Not overwrite image with same name
+            $filenameStorePng = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('png')->storeAs('public/images', $filenameStorePng);
+        }
         // Create Post
         $post = new Post;
         $post->title = $request->input('title');
@@ -74,6 +87,7 @@ class PostsController extends Controller
         $post->short_description = $request->input('short_description');
         $post->user_id = auth()->user()->id;
         $post->image =$filenameStore;
+        $post->png =$filenameStorePng;
         $post->save();
 
         return redirect('/posts')->with('success', 'Post Created');
@@ -87,9 +101,7 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        $posts = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        //
     }
 
     /**
@@ -136,6 +148,18 @@ class PostsController extends Controller
             // Upload Image
             $path = $request->file('image')->storeAs('public/images', $filenameStore);
         }
+        if ($request->hasFile('png')){
+            // Get Filename with extension
+            $filenameWithExt = $request->file('png')->getClientOriginalName();
+            // Get just Filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just Ext
+            $extension = $request->file('png')->getClientOriginalExtension();
+            // Store Filename | Not overwrite image with same name
+            $filenameStorePng = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('png')->storeAs('public/images', $filenameStorePng);
+        }
         // Create Post
         $post = Post::find($id);
         $post->title = $request->input('title');
@@ -144,6 +168,10 @@ class PostsController extends Controller
         if ($request->hasFile('image')){
             Storage::delete('public/images/'.$post->image);
             $post->image = $filenameStore;
+        }
+        if ($request->hasFile('png')){
+            Storage::delete('public/images/'.$post->png);
+            $post->png = $filenameStorePng;
         }
         $post->save();
         return redirect('/posts')->with('success', 'Post Updated');
@@ -162,7 +190,7 @@ class PostsController extends Controller
             return redirect ('/posts')->with('error', 'Unauthorized Page');
         }
         // Delete Image
-        Storage::delete('public/images/'.$post->image);
+        Storage::delete('public/images/'.$post->image, $post->png);
         $post->delete();
         return redirect('/posts')->with('success', 'Post Deleted');
     }

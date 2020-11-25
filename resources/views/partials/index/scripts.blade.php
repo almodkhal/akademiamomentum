@@ -48,8 +48,3 @@
 
 <!-- CUSTOM SCRIPT  -->
 <script src="{{ asset('js/custom.script.js') }}"></script>
-
-<div class="lgx-switcher-loader"></div>
-<!-- For Demo Purpose Only// Remove From Live -->
-<script src="{{ asset('js/switcherd41d.js') }}"></script>
-<!-- For Demo Purpose Only //Remove From Live-->

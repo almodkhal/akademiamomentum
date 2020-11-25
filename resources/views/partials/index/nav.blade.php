@@ -16,7 +16,7 @@
                         <div class="col-md-6">
                             <div class="right-menu">
                                 <ul class="list-inline">
-                                    <li class="login-register"><a href="#">Login/Register</a></li>
+                                    <li class="login-register"><a href="{{ route('login') }}">Login</a></li>
                                     <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-facebook-f" aria-hidden="true"></i></a></li>
                                     <li><a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>

@@ -17,6 +17,7 @@
         <table class="table table-striped">
             <tr>
                 <th scope="col">Nr</th>
+                <th scope="col">Icon</th>
                 <th scope="col">Image</th>
                 <th scope="col">Title</th>
                 <th scope="col">Edit</th>
@@ -26,6 +27,7 @@
             @foreach ($posts as $post)
                 <tr>
                     <td scope="row">{{ ($posts->total()-$loop->index)-(($posts->currentpage()-1) * $posts->perpage() ) }}</td>
+                    <td scope="row"><img style="float: left; width: 100px; height: 100px; object-fit: cover;" class="card-img" src="/storage/images/{{ $post->png }}" alt=""></td>
                     <td scope="row"><img style="float: left; width: 100px; height: 100px; object-fit: cover;" class="card-img" src="/storage/images/{{ $post->image }}" alt=""></td>
                     <td >{{ $post->title }}</td>
                     <td><a class="btn btn-primary" href="/posts/{{ $post->id }}/edit">Edit</a></td>

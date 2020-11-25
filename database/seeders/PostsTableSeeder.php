@@ -21,7 +21,8 @@ class PostsTableSeeder extends Seeder
             Ata do të fitojnë aftësitë menaxheriale që do u duhen në jetën e tyre profesionale. Në fund të kursit, studentët do të kenë njohuri të shkëlqyera, do të pajisen me çertifikatë dhe studentëve me të suksesshëm do u ofrohet mundësi e mëtejshme për zhvillimin e karrierës akademike si dhe pajisja me titullin “Chef”.',
             'short_description' => 'Menaxhimin e kuzhinës, pastiçerisë, somelierisë, pijeve dhe bar-kafeve, po ashtu edhe në kategori të tjera si bukëpjekje, piceri dhe kreperi.',
             'user_id' => '1',
-            'image' => '5.jpg'
+            'image' => '5.jpg',
+            'png' => 'icon-1.png'
         ]);
         $post2 = Post::create([
             'title' => 'Departamenti i Menaxhim Hoteleri',
@@ -29,7 +30,8 @@ class PostsTableSeeder extends Seeder
             Për këtë arsye ky departament ofron njohjen dhe edukimin me koncepte të përqëndruara në krijimin e mjediseve dhe shërbimeve me cilësi të lartë. Ofrohen mundësi të gjera për avancimin e mëtejshëm të karrierës.',
             'short_description' => 'Administrimin e hotelit, menaxhimin e sallave, restoranteve, mjediseve rekreative, pishinave, kopshteve.',
             'user_id' => '1',
-            'image' => '3.jpg'
+            'image' => '3.jpg',
+            'png' => 'icon-2.png'
         ]);
         $post3 = Post::create([
             'title' => 'Departamenti i Administrimit të Eventeve, Spektaklit dhe Show-t',
@@ -37,7 +39,8 @@ class PostsTableSeeder extends Seeder
             Me anë të programeve tona, personave të spikatur të gatshëm për të transmetuar përvojat e tyre disa vjeçare dhe njohuritë e tyre të shumta, keni mundësinë të vini në përdorim aftësitë për t’i dhënë atyre formë profesionale.',
             'short_description' => 'Administrimi i eventeve, dekori dhe arredimi, kostumografia, spektakli dhe show janë pjesë e këtij departamenti.',
             'user_id' => '1',
-            'image' => '4.jpg'
+            'image' => '4.jpg',
+            'png' => 'icon-3.png'
         ]);
         $post4 = Post::create([
             'title' => 'Departamenti i Guidës Historike dhe asaj të Panjohur',
@@ -45,7 +48,8 @@ class PostsTableSeeder extends Seeder
             Interesi në rritje i turistëve për përvoja të reja kulturore sjell mundësi të konsiderueshme në zgjerimin e kësaj fushe. Departamenti është i ndarë në kategori të cilat përmbajnë guidën turistike, etnofolklorike, arkeologjike, urbane dhe teknologjike. Po ashtu edhe njohuri mbi historinë dhe kulturën e kombit, arkitekturën së bashku me vlerat që e dallojnë atë, qendrat historike, teknologjinë dhe inovacionin si pjesë e qyteteve tona e të tjera.',
             'short_description' => 'Programe specifike të cilat mundësojnë njohuritë përkatëse në lidhje me ruajtjen dhe promovimin e pasurive kulturore.',
             'user_id' => '1',
-            'image' => '1.jpg'
+            'image' => '1.jpg',
+            'png' => 'icon-4.png'
         ]);
         $post5 = Post::create([
             'title' => 'Departamenti i Agjencisë Turistike',
@@ -53,7 +57,8 @@ class PostsTableSeeder extends Seeder
             Programi përgatit studentët në aspekte të tjera përtej prenotimit të biletave të tilla si, krijimin e paketave turistike, administrimin e produktit turistik, terminologjisë ajrore, organizimin e ekskursioneve dhe transportit, ndërveprimin me agjenci të tjera, faktorët që lidhen me ruajtjen e sigurisë dhe mbështetjes gjithëpërfshirëse të turistëve etj.',
             'short_description' => 'Teknikat më të avancuara për të drejtuar industrinë e udhëtimit dhe turizmit në mënyrën më të mirë të mundshme.',
             'user_id' => '1',
-            'image' => '2.jpg'
+            'image' => '2.jpg',
+            'png' => 'icon-5.png'
         ]);
         $post6 = Post::create([
             'title' => 'Departamenti TIK (Teknologjia e Informacionit dhe Komunikimit )',
@@ -62,7 +67,8 @@ class PostsTableSeeder extends Seeder
             Misioni kryesor i departamentit është të pajisë studentët me njohuri bazë aplikative në fushën e teknologjisë si dhe nën disiplinat mbështetëse duke formuar specialistë në fushat e implementimeve të sistemeve informatike.',
             'short_description' => 'Studim i mirëfilltë i inovacionit dixhital, teknologjisë së marketingut, tregut dhe perspektivës dixhitale.',
             'user_id' => '1',
-            'image' => '7.jpg'
+            'image' => '7.jpg',
+            'png' => 'icon-6.png'
         ]);
 
         $staf1 = Staf::create([

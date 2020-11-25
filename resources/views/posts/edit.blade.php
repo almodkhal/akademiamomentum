@@ -20,6 +20,9 @@
         <div class="form-group">
             {{ Form::file('image') }}
         </div>
+        <div class="form-group">
+            {{ Form::file('png') }}
+        </div>
         {{ Form::hidden('_method', 'PUT') }}
         {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
     {!! Form::close() !!}
